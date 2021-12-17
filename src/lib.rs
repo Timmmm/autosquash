@@ -45,8 +45,9 @@ pub fn autorebase(
     include_all_branches: bool,
 ) -> Result<()> {
     // Check the git version. `git switch` was introduced in 2.23.
-    if git_version()?.as_slice() < &[2, 23] {
-        bail!("Your Git installation is too old - version 2.23 or later is required");
+    // `--path-format` was introduced in 2.31.
+    if git_version()?.as_slice() < &[2, 31] {
+        bail!("Your Git installation is too old - version 2.31 or later is required");
     }
 
     // The first thing we do is set the commiter date to now. If we don't do this
