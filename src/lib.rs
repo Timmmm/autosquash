@@ -37,7 +37,7 @@ fn get_merge_base(branch: &str) -> Result<String> {
 }
 
 fn get_commit_messages(from: &str, to: &str) -> Result<String> {
-    let messages = git_cwd(&["--no-pager", "log", "--format=%B", &format!("{}..{}", from, to)])?.stdout;
+    let messages = git_cwd(&["--no-pager", "log", "--reverse", "--format=%B", &format!("{}..{}", from, to)])?.stdout;
     let messages = std::str::from_utf8(&messages)?;
     Ok(messages.to_owned())
 }
