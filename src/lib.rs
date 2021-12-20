@@ -6,10 +6,7 @@ mod trim;
 use trim::*;
 
 /// Autosquash automatically squashes onto the merge base.
-pub fn autosquash(
-    onto_branch: &str,
-) -> Result<()> {
-
+pub fn autosquash(onto_branch: &str) -> Result<()> {
     eprint!("{}", "• Getting merge base...".yellow());
     let merge_base = get_merge_base(onto_branch)?;
     eprintln!("\r{}", "• Getting merge base...".green());
@@ -29,7 +26,6 @@ pub fn autosquash(
     Ok(())
 }
 
-
 fn get_merge_base(branch: &str) -> Result<String> {
     let commit = git_cwd(&["merge-base", "HEAD", &branch])?.stdout;
     let commit = std::str::from_utf8(commit.trim_ascii_whitespace())?;
@@ -37,7 +33,14 @@ fn get_merge_base(branch: &str) -> Result<String> {
 }
 
 fn get_commit_messages(from: &str, to: &str) -> Result<String> {
-    let messages = git_cwd(&["--no-pager", "log", "--reverse", "--format=%B", &format!("{}..{}", from, to)])?.stdout;
+    let messages = git_cwd(&[
+        "--no-pager",
+        "log",
+        "--reverse",
+        "--format=%B",
+        &format!("{}..{}", from, to),
+    ])?
+    .stdout;
     let messages = std::str::from_utf8(&messages)?;
     Ok(messages.to_owned())
 }
