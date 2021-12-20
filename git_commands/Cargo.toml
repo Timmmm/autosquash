@@ -4,7 +4,7 @@ version = "0.2.0"
 authors = ["Tim Hutt <timh@graphcore.ai>"]
 edition = "2018"
 license = "MIT"
-description = "Internal crate for autorebase"
+description = "Internal crate for autosquash"
 
 [dependencies]
 anyhow = "1.0.40"

@@ -2,7 +2,7 @@
 mod utils;
 use utils::*;
 
-// This program just creates an example repo so you can try out autorebase.
+// This program just creates an example repo so you can try out autosquash.
 // It is created in a temporary directory that is printed at the end.
 //
 // To run: `cargo run --example create_demo_repo`

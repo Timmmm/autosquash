@@ -18,14 +18,14 @@ jobs:
         include:
           - os: ubuntu-18.04
             cargo_extra_flags: --target x86_64-unknown-linux-musl
-            output_executable: target/x86_64-unknown-linux-musl/release/autorebase
-            output_executable_upload_as: autorebase-linux
+            output_executable: target/x86_64-unknown-linux-musl/release/autosquash
+            output_executable_upload_as: autosquash-linux
           - os: macos-latest
-            output_executable: target/release/autorebase
-            output_executable_upload_as: autorebase-mac
+            output_executable: target/release/autosquash
+            output_executable_upload_as: autosquash-mac
           - os: windows-latest
-            output_executable: target/release/autorebase.exe
-            output_executable_upload_as: autorebase-windows.exe
+            output_executable: target/release/autosquash.exe
+            output_executable_upload_as: autosquash-windows.exe
     steps:
       - uses: actions/checkout@v2
 
