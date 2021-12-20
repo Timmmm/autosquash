@@ -29,3 +29,18 @@ jobs:
 
     - name: Run tests
       run: cargo test
+
+    # You'd hope there would be a better way.
+    - name: Archive executables
+      uses: actions/upload-artifact@v2
+      if: matrix.os == 'windows-latest'
+      with:
+        name: executables
+        path: target/debug/autosquash.exe
+
+    - name: Archive executables
+      uses: actions/upload-artifact@v2
+      if: matrix.os != 'windows-latest'
+      with:
+        name: executables
+        path: target/debug/autosquash
