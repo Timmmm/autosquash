@@ -17,12 +17,16 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repo
+      uses: actions/checkout@v2
 
-    - name: Versions
+    - name: Print versions
       run: |
         git version
         cargo version
+
+    - name: Rust dependency cache
+      uses: Swatinem/rust-cache@v1
 
     - name: Build
       run: cargo build
@@ -35,12 +39,12 @@ jobs:
       uses: actions/upload-artifact@v2
       if: matrix.os == 'windows-latest'
       with:
-        name: executables
+        name: autosquash-${{ matrix.os }}
         path: target/debug/autosquash.exe
 
     - name: Archive executables
       uses: actions/upload-artifact@v2
       if: matrix.os != 'windows-latest'
       with:
-        name: executables
+        name: autosquash-${{ matrix.os }}
         path: target/debug/autosquash
