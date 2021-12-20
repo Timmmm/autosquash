@@ -1,6 +1,6 @@
 [package]
 name = "autosquash"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Tim Hutt <timh@graphcore.ai>"]
 edition = "2018"
 license = "MIT"
