@@ -43,7 +43,7 @@ fn get_commit_messages(from: &str, to: &str) -> Result<String> {
 }
 
 fn reset_to(commit: &str) -> Result<()> {
-    git_cwd(&["reset", commit])?;
+    git_cwd(&["reset", "--soft", commit])?;
     Ok(())
 }
 
