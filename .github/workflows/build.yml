@@ -35,16 +35,16 @@ jobs:
       run: cargo test
 
     # You'd hope there would be a better way.
-    - name: Archive executables
+    - name: Archive executable (Windows)
       uses: actions/upload-artifact@v2
       if: matrix.os == 'windows-latest'
       with:
-        name: autosquash-${{ matrix.os }}
+        name: executable ${{ matrix.os }}
         path: target/debug/autosquash.exe
 
-    - name: Archive executables
+    - name: Archive executable (Other)
       uses: actions/upload-artifact@v2
       if: matrix.os != 'windows-latest'
       with:
-        name: autosquash-${{ matrix.os }}
+        name: executable ${{ matrix.os }}
         path: target/debug/autosquash
